@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Rose Day</title>
+    <style>
+        body {
+            background-color: #ffe6e6;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
+            overflow: hidden;
+            transition: filter 1s ease-in-out;
+        }
+        .cover-blur {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 230, 230, 0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            z-index: 1;
+        }
+        .message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d63384;
+            margin-top: 20px;
+        }
+        .gift-btn {
+            background-color: #d63384;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            z-index: 2;
+            position: relative;
+        }
+        .rose-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 3s ease;
+        }
+        .rose {
+            width: 80%; /* Adjust the width to be 80% of the screen */
+            max-width: 600px; /* Set a max width to prevent it from getting too large */
+            height: auto; /* Maintain the aspect ratio */
+            object-fit: contain; /* Make sure the whole image is visible */
+            opacity: 0;
+            animation: bloomRose 3s forwards;
+        }
+        @keyframes bloomRose {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body id="body">
+    <div id="coverBlur" class="cover-blur"></div>
+    <h1 id="welcomeMessage">Happy Rose Day!</h1>
+    <p class="message" id="personalMessage">Just like a rose, you add color, beauty, and fragrance to the lives of everyone around you. 🌹💖</p>
+    
+    <button class="gift-btn" onclick="bloomRoseEffect()">Open Your Gift</button>
+    
+    <div id="roseContainer" class="rose-container">
+        <img class="rose" src="https://www.pngmart.com/files/1/Pink-Rose-PNG-Pic.png" alt="Blooming Rose">
+    </div>
+    
+    <script>
+        // Retrieve the user's name from localStorage
+        const userName = localStorage.getItem('userName');
+        if (userName) {
+            document.getElementById('welcomeMessage').textContent = `Happy Rose Day, ${userName}!`;
+            document.getElementById('personalMessage').textContent = `${userName}, I feel truly blessed to have a friend like you and I'm incredibly grateful for all the help you've given me over time. I'll never forget everything you've done. Even if I share some cringy moments or talk about random things, thank you for your patience in putting up with me. You all are the reason I never feel alone. Just like a rose, you add color, beauty and fragrance to the lives of everyone around you. ${userName}! Wait my friend,I have a special gift for you today💖.`;
+        } else {
+            document.getElementById('welcomeMessage').textContent = "Happy Rose Day!";
+            document.getElementById('personalMessage').textContent = "May your life be as beautiful and fragrant as roses! 🌹💖";
+        }
+
+        function bloomRoseEffect() {
+            document.getElementById('coverBlur').style.display = 'block';
+            const roseContainer = document.getElementById('roseContainer');
+            roseContainer.style.display = 'block';
+            setTimeout(() => {
+                roseContainer.style.opacity = 1;  // Fade in the rose
+            }, 100);
+        }
+    </script>
+</body>
+</html>
